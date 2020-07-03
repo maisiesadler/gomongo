@@ -83,7 +83,11 @@ func (coll *TestCollection) Find(ctx context.Context, filter interface{}, findOp
 }
 
 func (coll *TestCollection) FindByID(ctx context.Context, objID *primitive.ObjectID, obj interface{}) (interface{}, error) {
-	return coll.coll[*objID], nil
+	if o, ok := coll.coll[*objID]; ok {
+		return o, nil
+	}
+
+	return nil, errors.New("Not found")
 }
 
 func (coll *TestCollection) SetFindFilter(predicate func(interface{}, bson.M) bool) {
