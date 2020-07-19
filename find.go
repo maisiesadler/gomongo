@@ -14,6 +14,10 @@ import (
 // FindByID finds a single result using the collection ID
 func (coll *MongoCollection) FindByID(ctx context.Context, objID *primitive.ObjectID, obj interface{}) (interface{}, error) {
 
+	if objID == nil {
+		return nil, errNilID
+	}
+
 	filter := bson.D{primitive.E{Key: "_id", Value: objID}}
 
 	return coll.FindOne(ctx, filter, obj)
