@@ -1,4 +1,4 @@
-module gomongo
+module github.com/maisiesadler/gomongo
 
 go 1.16
 
