@@ -1,4 +1,4 @@
-module mongocoll
+module gomongo
 
 go 1.16
 
